@@ -32,3 +32,111 @@ https://sites.thinkphp.cn/1556332
 打开windows自启动目录：
 start shell:startup
 ```
+
+## 版本回退
+```
+1、未提交
+未提交有以下两种情况：
+
+1）已经在工作区修改了文件，但还未执行 git add 提交到暂存区。
+
+2）已经执行了 git add 提交到暂存作，但还未执行 git commit 提交本地仓库。
+
+这时候回退：
+
+git reset --hard
+这样等于清空了暂存区和工作区，本地仓库回退到了最新的提交状态。
+
+2、已提交未推送
+这种情况是指已经执行了 git add 提交到暂存区操作，又执行了 git commit 提交本地仓库，但还未 git push 推送到远程仓库。
+
+2.1 上个版本回退：
+
+git reset --hard HEAD^
+2.2 多个版本回退：
+
+git reset --hard HEAD~N
+N：代表数字，要回退的次数。
+
+2.3 指定版本回退：
+
+git reset --hard <commit_id>
+2.4 直接回退到远程最新版本：
+
+git reset --hard origin/master
+3、已推送
+这种情况是指已经执行了 git add 提交到暂存区操作，又执行了 git commit 提交本地仓库，还执行 git push 推送到远程仓库。
+
+参考上面的 2.1~2.4 的方法，先强制回退到本地仓库到上 N 个版本，再进行强制推送到远程仓库。
+
+回退到上个版本示例：
+
+git reset --hard HEAD^
+git push -f
+```
+
+## Git钩子
+```
+sudo vim post-receive
+
+#!/bin/sh
+cd /www/wwwroot
+unset GIT_DIR
+eval ssh-agent
+ssh-add /home/git/.ssh/id_rsa
+git pull origin master
+```
+
+## Git钩子
+```
+sudo vim hooks/post-commit
+
+#!/bin/sh
+export LANG=en_US.UTF-8
+svn update --username hanghang --password 123456 /data/project --no-auth-cache
+```
+
+## git pull 提示：no tty present and no askpass program specified
+```
+sudo vi /etc/sudoers 
+
+在sudoers文件中加一行（www为所属用户，免密登录）：
+www ALL=(ALL:ALL) NOPASSWD: ALL
+```
+
+## nginx配置
+```
+server {
+        listen          443;
+        server_name     www.skeep.cc;
+        root            /data/web/repository/www/public;
+
+        ssl     on;
+        ssl_certificate         /etc/nginx/ssl/www/1_www.skeep.cc_bundle.crt;
+        ssl_certificate_key     /etc/nginx/ssl/www/2_www.skeep.cc.key;
+        ssl_session_timeout     5m;
+        ssl_protocols           TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers             ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;
+        ssl_prefer_server_ciphers on;
+
+        index           	index.html index.htm index.php;
+        location / {
+                    #try_files $uri $uri/ /index.php/$uri;
+                    if (!-e $request_filename){
+                    rewrite  ^(.*)$  /index.php?s=$1  last;
+                    }
+        }
+
+        location ~ \.php(.*)$ {
+                fastcgi_pass  127.0.0.1:9000;
+                    fastcgi_split_path_info  ^(.+\.php)(.*)$;
+                    #fastcgi_pass   unix:/dev/shm/fpm-cgi.sock;
+                    fastcgi_index  index.php;
+                    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+                    fastcgi_param  PATH_INFO $fastcgi_path_info;
+                    include        fastcgi_params;
+        }
+}
+```
+
+
