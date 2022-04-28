@@ -1,41 +1,35 @@
-git 版本回退
- 
+## composer
 
-1、未提交
-未提交有以下两种情况：
+```
+composer 手动加载语法：
+"autoload":{
+    "psr-4": {
+          "Workerman\\":"vendor/workerman/workerman",
+    	"GatewayWorker\\": "vendor/workerman/gateway-worker/src"
+    	"命名空间\\": "目录地址"
+    }
+}
+执行: composer dump-autoload
 
-1）已经在工作区修改了文件，但还未执行 git add 提交到暂存区。
+composer下载地址和腾讯云镜像：
+https://getcomposer.org/download/
+composer config -g repos.packagist composer https://mirrors.cloud.tencent.com/composer/
 
-2）已经执行了 git add 提交到暂存作，但还未执行 git commit 提交本地仓库。
+composer常用包：
+常用库大全：https://github.com/JingwenTian/awesome-php
+常用函数：composer require devkeep/tools
+微信支付：composer require zoujingli/wechat-developer
+数 据 库：composer require catfan/medoo
+数 据 库：composer require topthink/think-orm
+邮件发送：composer require phpmailer/phpmailer
+二 维 码：composer require endroid/qr-code
+数据采集：composer require jaeger/querylist
+文件添加ZIP格式并下载：composer require maennchen/zipstream-php
+文字转拼音：composer require overtrue/pinyin
 
-这时候回退：
+Thinkphp扩展插件包大全：
+https://sites.thinkphp.cn/1556332
 
-git reset --hard
-这样等于清空了暂存区和工作区，本地仓库回退到了最新的提交状态。
-
-2、已提交未推送
-这种情况是指已经执行了 git add 提交到暂存区操作，又执行了 git commit 提交本地仓库，但还未 git push 推送到远程仓库。
-
-2.1 上个版本回退：
-
-git reset --hard HEAD^
-2.2 多个版本回退：
-
-git reset --hard HEAD~N
-N：代表数字，要回退的次数。
-
-2.3 指定版本回退：
-
-git reset --hard <commit_id>
-2.4 直接回退到远程最新版本：
-
-git reset --hard origin/master
-3、已推送
-这种情况是指已经执行了 git add 提交到暂存区操作，又执行了 git commit 提交本地仓库，还执行 git push 推送到远程仓库。
-
-参考上面的 2.1~2.4 的方法，先强制回退到本地仓库到上 N 个版本，再进行强制推送到远程仓库。
-
-回退到上个版本示例：
-
-git reset --hard HEAD^
-git push -f
+打开windows自启动目录：
+start shell:startup
+```
