@@ -89,7 +89,7 @@ ssh-add /home/git/.ssh/id_rsa
 git pull origin master
 ```
 
-## Git钩子
+## svn钩子
 ```
 sudo vim hooks/post-commit
 
