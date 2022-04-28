@@ -141,4 +141,102 @@ server {
 }
 ```
 
+## 公私钥
+```
+1.生成公私钥 ssh-keygen -t rsa（windows: C:\Users\Administrator\.ssh）
+2.添加私钥到git（linux）： 
+ssh-add ~/.ssh/id_rsa
+ssh-agent bash
+
+sudo vim /etc/sudoers （增加nginx或者fpm可以免密执行登录）
+添加： www-data  ALL=(ALL:ALL) NOPASSWD: ALL
+```
+
+## git web钩子调用
+```
+<?php
+
+
+    // --------------- pull.sh -----------------------
+    // #!/bin/sh
+    // cd /data/yunxiaoyi
+    // eval `ssh-agent`
+    // ssh-add /home/ubuntu/.ssh/id_rsa
+    // git pull origin master
+    // --------------- pull.sh -----------------------
+    
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST')
+    {
+        exec("sudo /data/pull.sh 2>&1", $out, $return);
+        print_r(implode("\n", $out));
+        exit();
+    }
+
+?>
+
+<!doctype html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>代码同步</title>
+        <style>
+            body
+            {
+                margin: 0;
+                padding: 0;
+            }   
+
+            .syc
+            {
+                width: 100px;
+                height: 32px;
+                line-height: 32px;
+            }
+
+            .c
+            {
+                margin: 20px 0 0 30px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <button class="syc c">代码同步</button>
+        <div class="box c"></div>
+
+        <script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+        <script>
+
+            $('.syc').on('click', function(){
+
+                $.ajax({
+                    type: 'post',
+                    url: './syc.php',
+                    data: {},
+                    beforeSend: function()
+                    {
+                        $('.box').html('正在同步，请稍后...');
+                    },
+                    success: function (data) 
+                    {
+                        console.log(data);
+                        $('.box').html(data.replace(/\n/g,"<br/>"));
+                    },
+                    error: function(error)
+                    {
+                        console.log(error);
+                    }
+                });
+            })
+
+        </script>
+    </body>
+</html>
+
+```
+
+
 
