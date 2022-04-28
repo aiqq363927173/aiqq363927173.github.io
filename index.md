@@ -237,6 +237,16 @@ sudo vim /etc/sudoers （增加nginx或者fpm可以免密执行登录）
 </html>
 
 ```
-
+## windows批处理命令执行git操作
+```
+%git提交%
+git pull origin master
+git add .
+git commit -m "auto"
+git push origin master
+%同步远程目录代码%
+curl -G https://miniapp.funengyun.top/syc.php?c=1
+pause
+```
 
 
