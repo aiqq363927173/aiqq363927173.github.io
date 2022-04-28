@@ -1,0 +1,41 @@
+git 版本回退
+ 
+
+1、未提交
+未提交有以下两种情况：
+
+1）已经在工作区修改了文件，但还未执行 git add 提交到暂存区。
+
+2）已经执行了 git add 提交到暂存作，但还未执行 git commit 提交本地仓库。
+
+这时候回退：
+
+git reset --hard
+这样等于清空了暂存区和工作区，本地仓库回退到了最新的提交状态。
+
+2、已提交未推送
+这种情况是指已经执行了 git add 提交到暂存区操作，又执行了 git commit 提交本地仓库，但还未 git push 推送到远程仓库。
+
+2.1 上个版本回退：
+
+git reset --hard HEAD^
+2.2 多个版本回退：
+
+git reset --hard HEAD~N
+N：代表数字，要回退的次数。
+
+2.3 指定版本回退：
+
+git reset --hard <commit_id>
+2.4 直接回退到远程最新版本：
+
+git reset --hard origin/master
+3、已推送
+这种情况是指已经执行了 git add 提交到暂存区操作，又执行了 git commit 提交本地仓库，还执行 git push 推送到远程仓库。
+
+参考上面的 2.1~2.4 的方法，先强制回退到本地仓库到上 N 个版本，再进行强制推送到远程仓库。
+
+回退到上个版本示例：
+
+git reset --hard HEAD^
+git push -f
