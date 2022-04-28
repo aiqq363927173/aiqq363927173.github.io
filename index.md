@@ -35,7 +35,7 @@ https://sites.thinkphp.cn/1556332
 start shell:startup
 ```
 
-## 版本回退
+## git版本回退
 ```
 1、未提交
 未提交有以下两种情况：
@@ -77,7 +77,7 @@ git reset --hard HEAD^
 git push -f
 ```
 
-## Git钩子
+## git钩子
 ```
 sudo vim post-receive
 
