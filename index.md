@@ -249,4 +249,8 @@ curl -G https://miniapp.funengyun.top/syc.php?c=1
 pause
 ```
 
+## 开源的视频播放器
+```
+https://github.com/goldvideo/h265player
+```
 
