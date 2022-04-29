@@ -259,3 +259,8 @@ https://github.com/goldvideo/h265player
 https://geekuninstaller.com/download
 ```
 
+### 图片去底工具
+```
+https://www.aigei.com/bgremover
+```
+
