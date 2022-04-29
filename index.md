@@ -249,7 +249,7 @@ curl -G https://miniapp.funengyun.top/syc.php?c=1
 pause
 ```
 
-## 开源的视频播放器
+## 开源实现的web视频播放器
 ```
 https://github.com/goldvideo/h265player
 ```
@@ -258,9 +258,3 @@ https://github.com/goldvideo/h265player
 ```
 https://geekuninstaller.com/download
 ```
-
-### 图片去底工具
-```
-https://www.aigei.com/bgremover
-```
-
