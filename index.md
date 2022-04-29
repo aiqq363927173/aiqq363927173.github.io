@@ -254,3 +254,8 @@ pause
 https://github.com/goldvideo/h265player
 ```
 
+### windows强力卸载小工具
+```
+https://geekuninstaller.com/download
+```
+
