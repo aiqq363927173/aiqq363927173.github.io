@@ -18,6 +18,7 @@ composer config -g repos.packagist composer https://mirrors.cloud.tencent.com/co
 
 composer常用包：
 常用库大全：https://github.com/JingwenTian/awesome-php
+文档生成：composer require hg/apidoc
 常用函数：composer require devkeep/tools
 微信支付：composer require zoujingli/wechat-developer
 数 据 库：composer require catfan/medoo
