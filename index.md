@@ -259,3 +259,8 @@ https://github.com/goldvideo/h265player
 ```
 https://geekuninstaller.com/download
 ```
+
+### 公共直播源
+```
+https://github.com/shlyren/m3u8
+```
