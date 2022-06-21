@@ -264,4 +264,7 @@ https://github.com/shlyren/m3u8
 ```
 卸载软件：https://geekuninstaller.com/download
 解压软件：https://www.7-zip.org/download.html
+杀毒软件：https://www.huorong.cn/
+文件搜索：https://www.voidtools.com/zh-cn/
+U启动盘 ：https://github.com/pbatard/rufus/releases
 ```
