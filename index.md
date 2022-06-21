@@ -255,12 +255,13 @@ pause
 https://github.com/goldvideo/h265player
 ```
 
-### windows强力卸载小工具
-```
-https://geekuninstaller.com/download
-```
-
 ### 公共直播源
 ```
 https://github.com/shlyren/m3u8
+```
+
+### windows实用工具
+```
+卸载软件：https://geekuninstaller.com/download
+解压软件：https://www.7-zip.org/download.html
 ```
