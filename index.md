@@ -110,35 +110,35 @@ www ALL=(ALL:ALL) NOPASSWD: ALL
 ## nginx配置
 ```
 server {
-        listen          443;
-        server_name     www.skeep.cc;
-        root            /data/web/repository/www/public;
+    listen          443;
+    server_name     www.skeep.cc;
+    root            /data/web/repository/www/public;
 
-        ssl     on;
-        ssl_certificate         /etc/nginx/ssl/www/1_www.skeep.cc_bundle.crt;
-        ssl_certificate_key     /etc/nginx/ssl/www/2_www.skeep.cc.key;
-        ssl_session_timeout     5m;
-        ssl_protocols           TLSv1 TLSv1.1 TLSv1.2;
-        ssl_ciphers             ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;
-        ssl_prefer_server_ciphers on;
+    ssl     on;
+    ssl_certificate         /etc/nginx/ssl/www/1_www.skeep.cc_bundle.crt;
+    ssl_certificate_key     /etc/nginx/ssl/www/2_www.skeep.cc.key;
+    ssl_session_timeout     5m;
+    ssl_protocols           TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers             ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;
+    ssl_prefer_server_ciphers on;
 
-        index           	index.html index.htm index.php;
-        location / {
-                    #try_files $uri $uri/ /index.php/$uri;
-                    if (!-e $request_filename){
-                    rewrite  ^(.*)$  /index.php?s=$1  last;
-                    }
+    index           	index.html index.htm index.php;
+    location / {
+        #try_files $uri $uri/ /index.php/$uri;
+        if (!-e $request_filename){
+            rewrite  ^(.*)$  /index.php?s=$1  last;
         }
+    }
 
-        location ~ \.php(.*)$ {
-                fastcgi_pass  127.0.0.1:9000;
-                    fastcgi_split_path_info  ^(.+\.php)(.*)$;
-                    #fastcgi_pass   unix:/dev/shm/fpm-cgi.sock;
-                    fastcgi_index  index.php;
-                    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-                    fastcgi_param  PATH_INFO $fastcgi_path_info;
-                    include        fastcgi_params;
-        }
+    location ~ \.php(.*)$ {
+        fastcgi_pass  127.0.0.1:9000;
+        fastcgi_split_path_info  ^(.+\.php)(.*)$;
+        #fastcgi_pass   unix:/dev/shm/fpm-cgi.sock;
+        fastcgi_index  index.php;
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+        fastcgi_param  PATH_INFO $fastcgi_path_info;
+        include        fastcgi_params;
+    }
 }
 ```
 
