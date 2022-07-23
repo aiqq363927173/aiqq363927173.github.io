@@ -26,6 +26,8 @@ composer常用包：
 邮件发送：composer require phpmailer/phpmailer
 二 维 码：composer require endroid/qr-code
 数据采集：composer require jaeger/querylist
+图Base64：composer require melihovv/base64-image-decoder
+
 文件添加ZIP格式并下载：composer require maennchen/zipstream-php
 文字转拼音：composer require overtrue/pinyin
 
