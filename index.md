@@ -131,6 +131,11 @@ server {
             rewrite  ^(.*)$  /index.php?s=$1  last;
         }
     }
+    
+    location ~* ^/(static|uploads)/.*\.(php|php5)$ 
+    {  
+        deny all;
+    }
 
     location ~ \.php(.*)$ {
         fastcgi_pass  127.0.0.1:9000;
